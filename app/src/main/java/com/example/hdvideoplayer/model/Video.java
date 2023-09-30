@@ -2,13 +2,14 @@ package com.example.hdvideoplayer.model;
 
 public class Video
 {
-    String path,title,thumbnailUri;
+    String path,title,thumbnailUri,size;
 
-    public Video(String title, String path, String thumbnailUri) {
+    public Video(String title, String path, String thumbnailUri,String size) {
 
         this.title = title;
         this.path = path;
         this.thumbnailUri = thumbnailUri;
+        this.size = size;
     }
 
     public String getPath() {
@@ -33,5 +34,13 @@ public class Video
 
     public void setThumbnailUri(String thumbnailUri) {
         this.thumbnailUri = thumbnailUri;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 }

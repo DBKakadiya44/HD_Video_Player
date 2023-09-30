@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class VideoModel {
     String FolderName;
     ArrayList<String> VideoPath;
+    ArrayList<String> title;
 
     public String getFolderName() {
         return FolderName;
@@ -20,5 +21,13 @@ public class VideoModel {
 
     public void setVideoPath(ArrayList<String> videoPath) {
         VideoPath = videoPath;
+    }
+
+    public ArrayList<String> getTitle() {
+        return title;
+    }
+
+    public void setTitle(ArrayList<String> title) {
+        this.title = title;
     }
 }

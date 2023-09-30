@@ -10,15 +10,15 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.bumptech.glide.Glide;
 import com.example.hdvideoplayer.Preview;
 import com.example.hdvideoplayer.R;
 import com.example.hdvideoplayer.allfolderpreview.AllFolderPreviewActivity;
-import com.example.hdvideoplayer.videoplayer.adapter.FolderAdapter;
+import com.example.hdvideoplayer.model.Favorite;
+import com.example.hdvideoplayer.videoplayer.VideoPlayerActivity;
 
 import java.util.ArrayList;
 
@@ -26,10 +26,12 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder>
 {
     AllFolderPreviewActivity allFolderPreviewActivity;
     ArrayList<String> list;
+    ArrayList<String> title;
 
-    public ListsAdapter(AllFolderPreviewActivity allFolderPreviewActivity, ArrayList<String> list) {
+    public ListsAdapter(AllFolderPreviewActivity allFolderPreviewActivity, ArrayList<String> list, ArrayList<String> title) {
         this.allFolderPreviewActivity = allFolderPreviewActivity;
         this.list = list;
+        this.title=title;
     }
 
     @NonNull
@@ -45,14 +47,21 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder>
         holder.profile.setImageResource(R.drawable.videolable);
         holder.folder.setVisibility(View.INVISIBLE);
         holder.time.setVisibility(View.INVISIBLE);
-        holder.size.setVisibility(View.INVISIBLE);
-        holder.title.setText(""+list.get(position));
+        holder.size.setText(""+list.get(position));
+        holder.title.setText(""+title.get(position));
+
+        Glide.with(holder.itemView.getContext()).
+                load(list.get(position)).
+                placeholder(R.drawable.videolable).
+                centerCrop().
+                into(holder.profile);
 
         holder.round.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(holder.itemView.getContext(), Preview.class);
                 intent.putExtra("path", list.get(position));
+                intent.putExtra("title", title.get(position));
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -60,7 +69,43 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder>
         holder.menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupMenu(view);
+
+                String titlet = title.get(position);
+                String path = String.valueOf(list.get(position));
+
+                PopupMenu popupMenu = new PopupMenu(allFolderPreviewActivity, holder.menu);
+
+                popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+
+                        if(menuItem.getItemId()==R.id.AddFavorite)
+                        {
+                            Favorite favorite = new Favorite(titlet,path);
+
+                            for(int i = 0; i< VideoPlayerActivity.favorites.size() ; i++)
+                            {
+                                if(VideoPlayerActivity.favorites.get(i).getTitle().equals(title) && VideoPlayerActivity.favorites.get(i).getPath().equals(path))
+                                {
+                                    VideoPlayerActivity.favorites.remove(i);
+                                }
+                            }
+                            VideoPlayerActivity.favorites.add(favorite);
+
+                            //VideoPlayerActivity.favorites.add(favorite);
+
+                            Toast.makeText(allFolderPreviewActivity, "Added Favourite", Toast.LENGTH_SHORT).show();
+                        }
+                        if (menuItem.getItemId()==R.id.Delete)
+                        {
+                            Toast.makeText(allFolderPreviewActivity, "Delete", Toast.LENGTH_SHORT).show();
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();
+
             }
         });
 
@@ -75,6 +120,7 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder>
         ImageView folder, profile, menu;
         CardView round;
         TextView title, size, time;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -87,30 +133,5 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder>
             menu = itemView.findViewById(R.id.ivMenu);
 
         }
-    }
-
-    private void showPopupMenu(View view) {
-        PopupMenu popupMenu = new PopupMenu(allFolderPreviewActivity, view);
-        popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
-
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                if (view.getId() == R.id.Copy) {
-                    Toast.makeText(allFolderPreviewActivity, "Copy", Toast.LENGTH_SHORT).show();
-                }
-                if (view.getId() == R.id.Details) {
-                    Toast.makeText(allFolderPreviewActivity, "Details", Toast.LENGTH_SHORT).show();
-                }
-                if (view.getId() == R.id.Rename) {
-                    Toast.makeText(allFolderPreviewActivity, "Rename", Toast.LENGTH_SHORT).show();
-                }
-                if (view.getId() == R.id.Delete) {
-                    Toast.makeText(allFolderPreviewActivity, "Delete", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
-        });
-        popupMenu.show();
     }
 }

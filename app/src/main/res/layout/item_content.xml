@@ -11,6 +11,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
+        app:cardBackgroundColor="#3E3D3D"
         app:cardCornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +45,7 @@
         android:text="VID-20230526-WA001"
         android:textColor="@color/white"
         android:maxWidth="200dp"
-        android:maxLines="2"
+        android:maxLines="1"
         android:textSize="17sp"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="parent" />
