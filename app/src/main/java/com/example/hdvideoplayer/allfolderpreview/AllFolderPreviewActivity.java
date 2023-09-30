@@ -25,12 +25,11 @@ public class AllFolderPreviewActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         ArrayList<String> list = getIntent().getStringArrayListExtra("list");
-        ArrayList<String> title = getIntent().getStringArrayListExtra("title");
         String name = getIntent().getStringExtra("name");
 
         Log.d("ASASAS", "onCreate: Listttt = "+list);
 
-        ListsAdapter adapter = new ListsAdapter(AllFolderPreviewActivity.this , list, title);
+        ListsAdapter adapter = new ListsAdapter(AllFolderPreviewActivity.this , list);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(AllFolderPreviewActivity.this);
         binding.rvallvideo.setLayoutManager(manager);
         binding.rvallvideo.setAdapter(adapter);
