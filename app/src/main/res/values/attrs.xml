@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="aboutAppBack" format="color"></attr>
+    <attr name="aboutAppText" format="color"></attr>
+    <attr name="backGroundColor" format="color"></attr>
+    <attr name="cardbackground" format="color"></attr>
+    <attr name="textcolor" format="color"></attr>
+
+    <declare-styleable name="PinLockView">
+        <attr name="pinLength" format="integer" />
+        <attr name="keypadTextColor" format="color" />
+        <attr name="keypadTextSize" format="dimension" />
+        <attr name="keypadButtonSize" format="dimension" />
+        <attr name="keypadVerticalSpacing" format="dimension" />
+        <attr name="keypadHorizontalSpacing" format="dimension" />
+        <attr name="keypadButtonBackgroundDrawable" format="integer" />
+        <attr name="keypadDeleteButtonDrawable" format="integer" />
+        <attr name="keypadDeleteButtonSize" format="dimension" />
+        <attr name="keypadShowDeleteButton" format="boolean" />
+        <attr name="keypadDeleteButtonPressedColor" format="color" />
+
+        <attr name="dotEmptyBackground" format="reference" />
+        <attr name="dotFilledBackground" format="reference" />
+        <attr name="dotDiameter" format="dimension" />
+        <attr name="dotSpacing" format="dimension" />
+        <attr name="indicatorType" format="enum">
+            <enum name="fixed" value="0" />
+            <enum name="fill" value="1" />
+            <enum name="fillWithAnimation" value="2" />
+        </attr>
+
+    </declare-styleable>
+    <declare-styleable name="PlayerVideoPlayer">
+        <attr name="loadingstyle" format="integer" />
+        <attr name="subviewtextsize" format="dimension" />
+        <attr name="subviewtextcolor" format="color" />
+        <attr name="controldisable" format="boolean" />
+        <attr name="source" format="string" />
+        <attr name="title" format="string" />
+        <attr name="hidecontrolduration" format="integer" />
+        <attr name="hidecontrolonplay" format="boolean" />
+        <attr name="autoplay" format="boolean" />
+        <attr name="loop" format="boolean" />
+        <attr name="showtotalduration" format="boolean" />
+        <attr name="bottomprogressvarvisibility" format="boolean" />
+        <attr name="swipeenable" format="boolean" />
+        <attr name="showtoolbar" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="CircleProgress">
+        <attr name="circle_progress" format="integer"/>
+        <attr name="circle_max" format="integer"/>
+
+        <attr name="circle_unfinished_color" format="color"/>
+        <attr name="circle_finished_color" format="color"/>
+
+        <attr name="circle_text_size" format="dimension"/>
+        <attr name="circle_text_color" format="color"/>
+
+        <attr name="circle_prefix_text" format="string"/>
+        <attr name="circle_suffix_text" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="DonutProgress">
+        <attr name="donut_progress" format="float"/>
+        <attr name="donut_max" format="integer"/>
+
+        <attr name="donut_unfinished_color" format="color"/>
+        <attr name="donut_finished_color" format="color"/>
+
+        <attr name="donut_finished_stroke_width" format="dimension"/>
+        <attr name="donut_unfinished_stroke_width" format="dimension"/>
+
+        <attr name="donut_text_size" format="dimension"/>
+        <attr name="donut_text_color" format="color"/>
+
+        <attr name="donut_prefix_text" format="string"/>
+        <attr name="donut_suffix_text" format="string"/>
+        <attr name="donut_text" format="string"/>
+
+        <attr name="donut_background_color" format="color"/>
+
+        <attr name="donut_inner_bottom_text" format="string"/>
+        <attr name="donut_inner_bottom_text_size" format="dimension"/>
+        <attr name="donut_inner_bottom_text_color" format="color"/>
+
+        <attr name="donut_circle_starting_degree" format="integer" />
+        <attr name="donut_show_text" format="boolean"/>
+        <attr name="donut_inner_drawable" format="reference"/>
+        <attr name="donut_clockWise" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="PinView">
+        <attr name="itemCount" format="integer" />
+        <attr name="itemWidth" format="dimension" />
+        <attr name="itemHeight" format="dimension" />
+        <attr name="itemRadius" format="dimension" />
+        <attr name="itemSpacing" format="dimension" />
+        <attr name="lineWidth" format="dimension" />
+        <attr name="lineColor" format="reference|color" />
+        <attr name="viewType" format="enum">
+            <enum name="rectangle" value="0" />
+            <enum name="line" value="1" />
+            <enum name="none" value="2" />
+        </attr>
+        <attr name="android:cursorVisible" />
+        <attr name="cursorWidth" format="dimension" />
+        <attr name="cursorColor" format="reference|color" />
+        <attr name="android:itemBackground" />
+        <attr name="hideLineWhenFilled" format="boolean" />
+
+    </declare-styleable>
+    <declare-styleable name="PinViewTheme">
+        <attr name="pinViewStyle" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="ExpansionLayout">
+        <attr name="expansion_expanded" format="boolean" />
+    </declare-styleable>
+
+    <attr name="expansion_openOnlyOne" format="boolean" />
+
+    <declare-styleable name="ExpansionsViewGroupFrameLayout">
+        <attr name="expansion_openOnlyOne" />
+    </declare-styleable>
+    <declare-styleable name="ExpansionsViewGroupLinearLayout">
+        <attr name="expansion_openOnlyOne" />
+    </declare-styleable>
+    <declare-styleable name="ExpansionsViewGroupRelativeLayout">
+        <attr name="expansion_openOnlyOne" />
+    </declare-styleable>
+    <declare-styleable name="ExpansionsViewGroupConstraintLayout">
+        <attr name="expansion_openOnlyOne" />
+    </declare-styleable>
+    <declare-styleable name="ExpansionHeader">
+        <attr name="expansion_layout" format="reference"/>
+        <attr name="expansion_toggleOnClick" format="boolean"/>
+        <attr name="expansion_headerIndicator" format="reference"/>
+        <attr name="expansion_headerIndicatorRotationExpanded" format="integer"/>
+        <attr name="expansion_headerIndicatorRotationCollapsed" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="HTextView">
+        <attr name="isAnimate" format="boolean"/>
+        <attr name="animateType" format="enum">
+            <enum name="scale" value="0"/>
+            <enum name="evaporate" value="1"/>
+            <enum name="fall" value="2"/>
+            <enum name="sparkle" value="3"/>
+            <enum name="anvil" value="4"/>
+            <enum name="line" value="5"/>
+            <enum name="pixelate" value="6"/>
+            <enum name="typer" value="7"/>
+            <enum name="rainbow" value="8"/>
+        </attr>
+        <attr name="fontAsset" format="string"/>
+    </declare-styleable>
+</resources>

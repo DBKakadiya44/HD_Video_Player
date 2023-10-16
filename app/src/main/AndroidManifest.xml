@@ -10,6 +10,23 @@
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -20,48 +37,60 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HDVideoPlayer"
         tools:targetApi="31">
-        <activity
-            android:name=".favourite.FavouriteActivity"
-            android:exported="false" />
+
+
         <activity
             android:name=".musicplayer.PlayMusicActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".allfolderpreview.AllFolderPreviewActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".statussave.StatusSaverActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".mycollection.MyCollectionActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".whatsapp.WhatsappActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".facebook.FacebookActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".instagram.InstagramActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".videodownload.VideoDownloaderActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".musicplayer.MusicPlayerActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".videoplayer.VideoPlayerActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".start.StartActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".startprivacy.StartPrivacyActivity"
             android:exported="false" />
+
         <activity
             android:name=".grantpermission.PermissionActivity"
             android:exported="false" />
+
         <activity
             android:name=".splash.SplashActivity"
             android:exported="true">
@@ -76,7 +105,44 @@
             android:exported="true" />
         <activity
             android:name=".Preview"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true" />
+        <meta-data android:name="applovin.sdk.key"
+            android:value="SSzIpoR4VHzgAwbfoNn4kEL-iC6DaUbldMIoBz-WZq-GdcT_6rhKliT5PNfASDE6rm5pZWqAi7EkwOZ88lXy7E"/>
+
+
+
+        <service android:name=".VideoGetService"/>
+        <service
+            android:name=".FloatingVideoplayer"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".NotificationBackground"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </service>
+        <service android:name=".DumyNotification" />
+
+
     </application>
 
 </manifest>

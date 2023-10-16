@@ -1,11 +1,6 @@
 package com.example.hdvideoplayer.grantpermission;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import static com.example.hdvideoplayer.splash.SplashActivity.editor;
 
 import android.Manifest;
 import android.content.Intent;
@@ -17,10 +12,10 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.view.View;
 
-import com.example.hdvideoplayer.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.hdvideoplayer.databinding.ActivityPermissionBinding;
 import com.example.hdvideoplayer.start.StartActivity;
-import com.example.hdvideoplayer.startprivacy.StartPrivacyActivity;
 
 public class PermissionActivity extends AppCompatActivity {
 
@@ -99,6 +94,10 @@ public class PermissionActivity extends AppCompatActivity {
     private void startMainActivity() {
         Intent intent = new Intent(PermissionActivity.this, StartActivity.class);
         startActivity(intent);
+
+        editor.putInt("login",1);
+        editor.commit();
+
         finish(); // Finish this activity after starting the main activity
     }
 

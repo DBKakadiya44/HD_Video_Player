@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#1F1D2B</color>
+    <color name="colorPrimaryDark">#1F1D2B</color>
+    <color name="colorAccent">#fff</color>
+    <color name="bg">#1F1D2B</color>
+    <color name="adsbg">#252836</color>
+    <color name="trans">#252836</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+    <color name="comman">#FF6A23</color>
+    <color name="click">#00FF6A23</color>
+    <color name="click_di">#05FFFFFF</color>
+    <color name="overlay_color">#33ff3300</color>
+    <color name="subtitle_color">#ffffff</color>
+    <color name="line">#4DFFFFFF</color>
     <color name="main_bg">#0C0F18</color>
 </resources>

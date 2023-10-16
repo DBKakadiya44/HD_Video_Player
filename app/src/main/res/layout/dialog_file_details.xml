@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@color/trans"
+
+        android:layout_centerInParent="true"
+        android:padding="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Information"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp" />
+
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content">
+                <TextView
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+
+
+                    android:gravity="start|center"
+                    android:textColor="@color/white"
+                    android:text="Name"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"></TextView>
+                <ScrollView
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:padding="@dimen/_10sdp"
+                            android:textSize="@dimen/_14sdp"
+
+                            android:id="@+id/file_name"
+
+                            android:gravity="start|center"
+                            android:textColor="@color/white"
+                            android:text="Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"></TextView>
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/count"
+
+                    android:gravity="start|center"
+                    android:textColor="@color/white"
+                    android:text="Resolution"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"></TextView>
+                <TextView
+                    android:id="@+id/file_resouation"
+
+                    android:gravity="start|center"
+                    android:textColor="@color/white"
+                    android:text="Title"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/duration_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:gravity="start|center"
+                    android:textColor="@color/white"
+                    android:text="Duration"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"></TextView>
+                <TextView
+                    android:id="@+id/duration"
+                    android:gravity="start|center"
+                    android:textColor="@color/white"
+                    android:text="Title"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:gravity="start|center"
+                    android:textColor="@color/white"
+                    android:text="Size"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"></TextView>
+                <TextView
+                    android:id="@+id/file_size"
+                    android:gravity="start|center"
+                    android:textColor="@color/white"
+                    android:text="Title"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:gravity="start|center"
+                    android:textColor="@color/white"
+                    android:text="Path"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"></TextView>
+                <ScrollView
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:padding="@dimen/_10sdp"
+                            android:textSize="@dimen/_14sdp"
+
+                            android:id="@+id/file_path"
+                            android:gravity="start|center"
+                            android:textColor="@color/white"
+                            android:text="Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"></TextView>
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:gravity="start|center"
+                    android:textColor="@color/white"
+                    android:text="Date"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"></TextView>
+                <TextView
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14sdp"
+
+                    android:id="@+id/file_date"
+                    android:gravity="start|center"
+                    android:textColor="@color/white"
+                    android:text="Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp">
+            <RelativeLayout
+                android:layout_margin="@dimen/_5sdp"
+
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:background="@drawable/roundconner_button"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+
+                    android:id="@+id/ok"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:text="OK"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></TextView>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_margin="@dimen/_5sdp"
+
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

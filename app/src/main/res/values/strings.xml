@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HD Video Player</string>
+
+    <string name="brightness">  %1$d</string>
+    <string name="volume">  %1$d</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

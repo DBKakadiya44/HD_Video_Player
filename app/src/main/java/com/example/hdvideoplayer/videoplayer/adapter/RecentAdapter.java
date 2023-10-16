@@ -19,6 +19,8 @@ import com.example.hdvideoplayer.R;
 import com.example.hdvideoplayer.model.Favorite;
 import com.example.hdvideoplayer.model.Recent;
 import com.example.hdvideoplayer.videoplayer.VideoPlayerActivity;
+
+import java.io.File;
 import java.util.ArrayList;
 
 public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.ViewHolder> {
@@ -39,7 +41,18 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.ViewHolder
     public void onBindViewHolder(@NonNull RecentAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.title.setText(recent.get(position).getTitle());
-        holder.size.setText(recent.get(position).getPath());
+
+        long fileSizeInBytes = Long.parseLong(recent.get(position).getSize());
+        double fileSizeInMB = (double) fileSizeInBytes / (1024 * 1024);
+        String fileSizeFormatted = String.format("%.2f MB", fileSizeInMB);
+
+        holder.size.setText(""+fileSizeFormatted);
+
+        holder.time.setVisibility(View.VISIBLE);
+
+        long durationMilliseconds = Long.parseLong(recent.get(position).getTime());
+        String formattedDuration = millisecondsToTime(durationMilliseconds);
+        holder.time.setText(formattedDuration);
 
             Glide.with(holder.itemView.getContext()).
                     load(recent.get(position).getPath()).
@@ -58,6 +71,8 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.ViewHolder
 
                 String title = String.valueOf(recent.get(position).getTitle());
                 String path = String.valueOf(recent.get(position).getPath());
+                String size = recent.get(position).getSize();
+                String vtime = recent.get(position).getTime();
 
                 PopupMenu popupMenu = new PopupMenu(videoPlayerActivity, holder.menu);
 
@@ -68,7 +83,7 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.ViewHolder
 
                         if(menuItem.getItemId()==R.id.AddFavorite)
                         {
-                            Favorite favorite = new Favorite(title,path);
+                            Favorite favorite = new Favorite(title,path,size,vtime);
 
                             for(int i=0 ; i<VideoPlayerActivity.favorites.size() ; i++)
                             {
@@ -85,7 +100,29 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.ViewHolder
                         }
                         if (menuItem.getItemId()==R.id.Delete)
                         {
-                            Toast.makeText(videoPlayerActivity, "Delete", Toast.LENGTH_SHORT).show();
+
+                            File videoFile = new File(recent.get(position).getPath());
+
+                            if (videoFile.exists()) {
+                                // Delete the file
+                                boolean deleted = videoFile.delete();
+
+                                if (deleted) {
+                                    recent.remove(position);
+                                    notifyDataSetChanged();
+                                    Toast.makeText(videoPlayerActivity, "Delete", Toast.LENGTH_SHORT).show();
+                                    ;
+                                    // File successfully deleted
+                                    return true;
+                                } else {
+                                    // Failed to delete the file
+                                    return false;
+                                }
+                            } else {
+                                // File does not exist
+                                return false;
+                            }
+
                         }
                         return true;
                     }
@@ -102,39 +139,6 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.ViewHolder
                 intent.putExtra("path", recent.get(position).getPath());
                 intent.putExtra("title", recent.get(position).getTitle());
                 holder.itemView.getContext().startActivity(intent);
-            }
-        });
-        holder.menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String title = recent.get(position).getTitle();
-                String path = String.valueOf(recent.get(position).getPath());
-
-                PopupMenu popupMenu = new PopupMenu(videoPlayerActivity, holder.menu);
-
-                // Inflating popup menu from popup_menu.xml file
-                popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-
-                        if(menuItem.getItemId()==R.id.AddFavorite)
-                        {
-                            Favorite favorite = new Favorite(title,path);
-                            VideoPlayerActivity.favorites.add(favorite);
-
-                            Toast.makeText(videoPlayerActivity, "Added Favourite", Toast.LENGTH_SHORT).show();
-                        }
-                        if (menuItem.getItemId()==R.id.Delete)
-                        {
-                            Toast.makeText(videoPlayerActivity, "Delete", Toast.LENGTH_SHORT).show();
-                        }
-                        return true;
-                    }
-                });
-                popupMenu.show();
-
             }
         });
     }
@@ -159,5 +163,14 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.ViewHolder
             menu = itemView.findViewById(R.id.ivMenu);
         }
     }
+    public static String millisecondsToTime(long milliseconds) {
+        int seconds = (int) (milliseconds / 1000) % 60;
+        int minutes = (int) ((milliseconds / (1000 * 60)) % 60);
+        int hours = (int) ((milliseconds / (1000 * 60 * 60)) % 24);
+
+        // Format the time as HH:MM:SS
+        return String.format("%02d:%02d", minutes, seconds);
+    }
+
 
 }

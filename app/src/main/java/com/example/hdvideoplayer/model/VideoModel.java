@@ -6,6 +6,9 @@ public class VideoModel {
     String FolderName;
     ArrayList<String> VideoPath;
     ArrayList<String> title;
+    ArrayList<String> size;
+    ArrayList<String> time;
+
 
     public String getFolderName() {
         return FolderName;
@@ -29,5 +32,21 @@ public class VideoModel {
 
     public void setTitle(ArrayList<String> title) {
         this.title = title;
+    }
+
+    public ArrayList<String> getSize() {
+        return size;
+    }
+
+    public void setSize(ArrayList<String> size) {
+        this.size = size;
+    }
+
+    public ArrayList<String> getTime() {
+        return time;
+    }
+
+    public void setTime(ArrayList<String> time) {
+        this.time = time;
     }
 }

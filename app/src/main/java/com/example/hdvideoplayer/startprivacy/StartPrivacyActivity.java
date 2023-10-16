@@ -1,13 +1,12 @@
 package com.example.hdvideoplayer.startprivacy;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.hdvideoplayer.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.hdvideoplayer.databinding.ActivityStartPrivacyBinding;
 import com.example.hdvideoplayer.grantpermission.PermissionActivity;
 
@@ -51,8 +50,5 @@ public class StartPrivacyActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
 }

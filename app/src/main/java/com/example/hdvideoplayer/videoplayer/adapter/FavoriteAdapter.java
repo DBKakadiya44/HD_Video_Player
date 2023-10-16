@@ -1,9 +1,7 @@
 package com.example.hdvideoplayer.videoplayer.adapter;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,16 +13,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.hdvideoplayer.Preview;
 import com.example.hdvideoplayer.R;
 import com.example.hdvideoplayer.model.Favorite;
-import com.example.hdvideoplayer.model.Recent;
 import com.example.hdvideoplayer.videoplayer.VideoPlayerActivity;
 
+import java.io.File;
 import java.util.List;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
@@ -49,6 +46,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
 
         holder.round.setVisibility(View.VISIBLE);
         holder.folder.setVisibility(View.INVISIBLE);
+        holder.time.setVisibility(View.VISIBLE);
+
+        long durationMilliseconds = Long.parseLong(favorites.get(position).getTime());
+        String formattedDuration = millisecondsToTime(durationMilliseconds);
+        holder.time.setText(formattedDuration);
 
         Glide.with(holder.itemView.getContext()).
                 load(favorites.get(position).getPath()).
@@ -56,7 +58,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                 centerCrop().
                 into(holder.profile);
 
-        holder.size.setText(favorites.get(position).getPath());
+        long fileSizeInBytes = Long.parseLong(favorites.get(position).getSize());
+        double fileSizeInMB = (double) fileSizeInBytes / (1024 * 1024);
+        String fileSizeFormatted = String.format("%.2f MB", fileSizeInMB);
+
+        holder.size.setText(""+fileSizeFormatted);
 
         holder.round.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +70,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                 Intent intent = new Intent(holder.itemView.getContext(), Preview.class);
                 intent.putExtra("path", favorites.get(position).getPath());
                 intent.putExtra("title", favorites.get(position).getTitle());
+                intent.putExtra("time",favorites.get(position).getTime());
+                intent.putExtra("size",favorites.get(position).getSize());
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -89,7 +97,29 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                             Toast.makeText(videoPlayerActivity, "Remove Favourite", Toast.LENGTH_SHORT).show();
                         }
                         if (menuItem.getItemId() == R.id.Delete) {
-                            Toast.makeText(videoPlayerActivity, "Delete", Toast.LENGTH_SHORT).show();
+
+                            File videoFile = new File(favorites.get(position).getPath());
+
+                            if (videoFile.exists()) {
+                                // Delete the file
+                                boolean deleted = videoFile.delete();
+
+                                if (deleted) {
+                                    favorites.remove(position);
+                                    notifyDataSetChanged();
+                                    Toast.makeText(videoPlayerActivity, "Delete", Toast.LENGTH_SHORT).show();
+                                    ;
+                                    // File successfully deleted
+                                    return true;
+                                } else {
+                                    // Failed to delete the file
+                                    return false;
+                                }
+                            } else {
+                                // File does not exist
+                                return false;
+                            }
+
                         }
                         return true;
                     }
@@ -124,5 +154,12 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             menu = itemView.findViewById(R.id.ivMenu);
         }
     }
+    public static String millisecondsToTime(long milliseconds) {
+        int seconds = (int) (milliseconds / 1000) % 60;
+        int minutes = (int) ((milliseconds / (1000 * 60)) % 60);
+        int hours = (int) ((milliseconds / (1000 * 60 * 60)) % 24);
 
+        // Format the time as HH:MM:SS
+        return String.format("%02d:%02d", minutes, seconds);
+    }
 }
